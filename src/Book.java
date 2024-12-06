@@ -3,6 +3,7 @@ import java.net.*;
 import java.util.Scanner;
 import java.util.ArrayList; 
 
+
 public class Book
 {
     // What should a book contain?
@@ -92,5 +93,16 @@ public class Book
     void writeToFile()
     {
         // Add code here to write the contents of the book to a file.
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(title + ".txt", true)))
+        {
+            for (int i=0; i<text.size(); i++)
+            {
+                writer.write(text.get(i));
+                writer.newLine();
+            }
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
     }
 }
